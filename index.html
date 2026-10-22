@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="大模型零基础入门课：搞懂原理与幻觉，学会用 DeepSeek Harness 做文档补全与文档比对。">
+  <title>大模型入门课 · 从零开始用 DeepSeek Harness 干活</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="progress"><span id="progress-bar"></span></div>
+
+  <header id="hud">
+    <div class="hud-left">
+      <strong>大模型入门课</strong>
+      <span id="hud-chapter" class="hud-chapter"></span>
+    </div>
+    <div class="hud-right">
+      <span id="hud-count" class="hud-count">1 / 48</span>
+    </div>
+  </header>
+
+  <main id="stage-wrap">
+    <div id="stage" aria-live="polite"></div>
+  </main>
+
+  <footer id="controls">
+    <button id="btn-prev" title="上一页（←）" aria-label="上一页">←</button>
+    <button id="btn-next" title="下一页（→ / 空格）" aria-label="下一页">→</button>
+    <span class="ctrl-sep"></span>
+    <button id="btn-overview" title="总览（O）">总览</button>
+    <button id="btn-notes" title="讲稿（N）">讲稿</button>
+    <button id="btn-full" title="全屏（F）">全屏</button>
+    <button id="btn-help" title="快捷键（?）" aria-label="快捷键">?</button>
+  </footer>
+
+  <div id="notes" hidden>
+    <div class="notes-head">
+      <span>讲稿 <em id="notes-chapter"></em></span>
+      <button id="notes-close" aria-label="收起讲稿">收起</button>
+    </div>
+    <p id="notes-body"></p>
+  </div>
+
+  <div id="overview" hidden>
+    <div class="ov-panel">
+      <div class="ov-head">
+        <span>总览</span>
+        <button id="ov-close" aria-label="关闭总览">关闭</button>
+      </div>
+      <div id="ov-grid"></div>
+    </div>
+  </div>
+
+  <div id="help" hidden>
+    <div class="help-card">
+      <div class="help-head">快捷键 <button id="help-close" aria-label="关闭">关闭</button></div>
+      <ul>
+        <li><kbd>→</kbd> / <kbd>空格</kbd> 下一页</li>
+        <li><kbd>←</kbd> 上一页</li>
+        <li><kbd>Home</kbd> / <kbd>End</kbd> 首页 / 末页</li>
+        <li><kbd>N</kbd> 显示讲稿（讲师用）</li>
+        <li><kbd>O</kbd> 总览全部页面</li>
+        <li><kbd>F</kbd> 全屏</li>
+        <li><kbd>?</kbd> 打开这份帮助</li>
+        <li><kbd>Esc</kbd> 关闭浮层</li>
+      </ul>
+      <p class="help-tip">点小测选项可以看答案；打印时每页会单独成页。</p>
+    </div>
+  </div>
+
+  <script src="slides.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

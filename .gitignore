@@ -1,0 +1,4 @@
+.DS_Store
+*.swp
+# 本地留存的原始 PDF，仓库里用 ASCII 名的 slides.pdf
+大模型入门课.pdf
