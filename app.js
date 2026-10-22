@@ -7,6 +7,7 @@
   if (!TOTAL) return;
 
   const stage = document.getElementById('stage');
+  const stageFit = document.getElementById('stage-fit');
   const wrap = document.getElementById('stage-wrap');
   const hudChapter = document.getElementById('hud-chapter');
   const hudCount = document.getElementById('hud-count');
@@ -131,10 +132,15 @@
   /* ---------- 缩放 ---------- */
   function fit() {
     const rect = wrap.getBoundingClientRect();
-    const w = Math.max(320, rect.width - 40);
-    const h = Math.max(240, rect.height - 26);
+    const narrow = window.innerWidth <= 620;
+    const w = Math.max(240, rect.width - (narrow ? 20 : 40));
+    const h = Math.max(180, rect.height - (narrow ? 16 : 26));
     const scale = Math.min(w / 1280, h / 720);
+    // 用 transform 缩放画布，同时把占位盒改成缩放后的实际尺寸，
+    // 这样 flex 居中的是视觉尺寸，窄屏也不会溢出到右边
     stage.style.transform = 'scale(' + scale.toFixed(4) + ')';
+    stageFit.style.width = Math.round(1280 * scale) + 'px';
+    stageFit.style.height = Math.round(720 * scale) + 'px';
   }
 
   /* ---------- 事件 ---------- */

@@ -105,13 +105,25 @@ body {
   align-items: center;
   justify-content: center;
   padding: 34px 24px 56px;
+  overflow: hidden;
+}
+
+/* 缩放后的占位盒：宽高由 JS 按比例写死，
+   flex 居中的是它而不是 1280×720 的原始画布，窄屏才不会偏到右边 */
+#stage-fit {
+  position: relative;
+  flex: none;
+  width: 1280px;
+  height: 720px;
 }
 
 #stage {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 1280px;
   height: 720px;
-  transform-origin: center center;
+  transform-origin: top left;
 }
 
 .slide {
@@ -1367,6 +1379,7 @@ body {
   padding: 0 12px;
   font-family: inherit;
   font-size: 13px;
+  white-space: nowrap;
   color: var(--ink-2);
   background: transparent;
   border: 0;
@@ -1560,6 +1573,48 @@ kbd {
 
 [hidden] { display: none !important; }
 
+/* ---------- 窄屏（手机竖屏） ---------- */
+
+@media (max-width: 620px) {
+  #hud {
+    padding: 10px 14px 0;
+    font-size: 11.5px;
+  }
+  .hud-chapter { max-width: 40vw; }
+  #stage-wrap {
+    align-items: center;
+    padding: 40px 10px 74px;
+  }
+  #controls {
+    gap: 2px;
+    padding: 5px;
+    bottom: 10px;
+  }
+  #controls button {
+    min-width: 34px;
+    height: 32px;
+    padding: 0 8px;
+    font-size: 12px;
+  }
+  .ctrl-sep { margin: 0 2px; }
+  #notes {
+    bottom: 56px;
+    width: 94vw;
+    padding: 12px 14px 14px;
+  }
+  #notes-body {
+    font-size: 13px;
+    max-height: 40vh;
+    overflow: auto;
+  }
+  #ov-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .ov-item { font-size: 11.5px; padding: 8px 10px; }
+  .help-card {
+    width: 90vw;
+    padding: 18px;
+  }
+}
+
 /* ---------- 打印 ---------- */
 
 @media print {
@@ -1577,7 +1632,12 @@ kbd {
     display: block;
     padding: 0;
   }
+  #stage-fit {
+    width: auto !important;
+    height: auto !important;
+  }
   #stage {
+    position: static;
     width: auto;
     height: auto;
     transform: none !important;
